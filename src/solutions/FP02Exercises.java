@@ -2,6 +2,7 @@ package solutions;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FP02Exercises {
     public static void main(String[] args) {
@@ -13,15 +14,40 @@ public class FP02Exercises {
         //System.out.println("Add numbers with Integer::sum: " + addListFunctional(numbers));
         //System.out.println("Add numbers with lambda (x, y) -> x + y: " + addListLambda(numbers));
         //System.out.println("Compare highest number 0, (x, y) -> x > y ? x : y " + compareHighestNumber(numbers));
-        //System.out.println("Compare lowest number Integer.MAX_VALUE, (x, y) -> x > y ? y : x " + compareLowestNumber(numbers));
+        //System.out.println("Compare the lowest number Integer.MAX_VALUE, (x, y) -> x > y ? y : x " + compareLowestNumber(numbers));
+
+        // Exercise 7
         //System.out.println("Square every number in a list and find the sum of squares: " + findSumOfSquaresInList(numbers));
+
+        // Exercise 8
         //System.out.println("Cube every number in a list and find the sum of cubes: " + findSumOfCubesInList(numbers));
+
+        // Exercise 9
         //System.out.println("Find sum of odd numbers in a list: " + findSumOfOddNumbersInList(numbers));
+
         //printDistinctValuesFromList(numbers);
         //printSortedValuesFromList(numbers);
         //printDistinctAndSortedValuesFromList(numbers);
-        printComparingStringLengthFromList(courses);
+        //printComparingStringLengthFromList(courses);
+
+        //List<Integer> doubledNumbers = numbers.stream()
+        //        .map(x -> x*x)
+        //        .collect(Collectors.toList());
+        //System.out.println(doubledNumbers);
+
+        // Exercise 10
+        List<Integer> evenNumbersList = numbers.stream()
+                .filter(x -> x%2==0)
+                .collect(Collectors.toList());
+        System.out.println(evenNumbersList);
+
+        // Exercise 11
+        List<Integer> courseTitlesLengthsList = courses.stream()
+                .map(String::length)
+                .collect(Collectors.toList());
+        System.out.println(courseTitlesLengthsList);
     }
+
 
     private static int addListLambda(List<Integer> numbers){
         return numbers.stream().reduce(0, (x, y) -> x + y);

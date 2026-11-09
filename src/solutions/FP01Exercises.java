@@ -10,12 +10,25 @@ public class FP01Exercises {
         );
         // printAllNumbersInListStructured(numbers);
         // printAllEvenNumbersInListStructured(numbers);
+
+        // Exercise 1
         // printAllOddNumbersInListStructured(numbers);
+
+        // Exercise 2
         // printAllCoursesIndividually(courses);
+
+        // Exercise 3
         // printAllSpringCourses(courses);
+
+        // Exercise 4
         // printAllCoursesWhoseNameHasAtLeastFourLetters(courses);
+
         // printSquaresOfEvenNumbersInList(numbers);
+
+        // Exercise 5
         // printCubesOfOddNumbersInList(numbers);
+
+        // Exercise 6
         printNumberOfCharactersInEachCourseName(courses);
     }
 
