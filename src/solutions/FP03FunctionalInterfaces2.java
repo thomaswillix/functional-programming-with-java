@@ -10,7 +10,7 @@ public class FP03FunctionalInterfaces2 {
         List<Integer> numbers = List.of(12,9,13,4,6,2,4,12,15);
 
         // Boolean comparison
-        Predicate<Integer> isEvenPredicate = x -> x%2==0;
+        Predicate<Integer> isEvenPredicate = (Integer x) -> x%2==0;
 
         Function<Integer, Integer> squareFunction = x-> x*x;
 
@@ -43,32 +43,26 @@ public class FP03FunctionalInterfaces2 {
         String producto = "Café Latte";
         double precioBase = 3.50;
 
-        // 1. BIPREDICATE: Solo responde SI o NO
-        // ¿El precio supera el límite de un producto "Premium"?
-        BiPredicate<String, Double> esCafePremium = (prod, precio) -> (prod.contains("Café")) && (precio > 5.00);
-
-        // 2. BIFUNCTION: Transforma las dos entradas en un NUEVO resultado
-        // Aplica un impuesto al precio y nos devuelve un ticket formateado (String)
-        BiFunction<String, Double, String> generarTicket = (prod, precio) -> {
-            double precioFinal = precio * 1.21; // Sumamos 21% de IVA
-            return "Ticket: " + prod + " - Total con IVA: $" + precioFinal;
+        BiPredicate<Integer, String> bniPredicate = (number, str) -> {
+            return number<10 && str.length()>5;
         };
 
-        // 3. BICONSUMER: Recibe los dos datos, hace algo con ellos y NO devuelve nada
-        // Imprime en la pantalla de la cocina el pedido para que el barista lo prepare
-        BiConsumer<String, Double> enviarACocina = (prod, precio) -> {
-            System.out.println("[COCINA] Preparando: " + prod + " (Valorizado en $" + precio + ")");
+        System.out.println(bniPredicate.test(10, "in28minutes"));
+
+        BiFunction<Integer, String, String> biFunction = (number, str) -> {
+            return number + " " + str;
         };
 
-        // Evaluamos con el BiPredicate
-        boolean premium = esCafePremium.test(producto, precioBase);
-        System.out.println("¿Es un café premium?: " + premium); // false (cuesta 3.50)
+        System.out.println(biFunction.apply(15, "in28minutes"));
 
-        // Usamos el BiConsumer para ejecutar una acción
-        enviarACocina.accept(producto, precioBase); // Imprime el mensaje
+        BiConsumer<Integer, String> biConsumer = (s1, s2) -> {
+            System.out.println(s1);
+            System.out.println(s2);
+        };
 
-        // Usamos la BiFunction para obtener el String procesado
-        String ticketFinal = generarTicket.apply(producto, precioBase);
-        System.out.println(ticketFinal); // Imprime el ticket con el IVA calculado
+        biConsumer.accept(25, "in28minutes");
+
+        //Better for efficiency as it doesn't need a wrapper, we use primitive type int directly
+        IntBinaryOperator intBinaryOperator = (x, y) -> x + y;
     }
 }
